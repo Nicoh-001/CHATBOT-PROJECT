@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+
+  :root {
+    --body-bg: linear-gradient(135deg, #0c91a8 0%, #1ca2d6 100%);
+    --msger-bg: #fff;
+    --border: 2px solid #e20101;
+    --left-msg-bg: #ececec;
+    --right-msg-bg: #579ffb;
+  }
+
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Helvetica, sans-serif;
+  }
+
+  .msger {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 867px;
+    margin: 25px 10px;
+    height: calc(100% - 50px);
+    border: var(--border);
+    border-radius: 5px;
+    background: var(--msger-bg);
+    box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+  }
+
+  .msger-header {
+    /* display: flex; */
+    font-size: medium;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: center;
+    border-bottom: var(--border);
+    background: #eee;
+    color: #666;
+  }
+
+  .msger-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .msger-chat::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .msger-chat::-webkit-scrollbar-track {
+    background: #ddd;
+  }
+
+  .msger-chat::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+  }
+
+  .msg {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .msg-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background: #ddd;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+  }
+
+  .msg-bubble {
+    max-width: 450px;
+    padding: 15px;
+    border-radius: 15px;
+    background: var(--left-msg-bg);
+  }
+
+  .msg-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .msg-info-name {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .msg-info-time {
+    font-size: 0.85em;
+  }
+
+  .left-msg .msg-bubble {
+    border-bottom-left-radius: 0;
+  }
+
+  .right-msg {
+    flex-direction: row-reverse;
+  }
+
+  .right-msg .msg-bubble {
+    background: var(--right-msg-bg);
+    color: #fff;
+    border-bottom-right-radius: 0;
+  }
+
+  .right-msg .msg-img {
+    margin: 0 0 0 10px;
+  }
+
+  .msger-inputarea {
+    display: flex;
+    padding: 10px;
+    border-top: var(--border);
+    background: #eee;
+  }
+
+  .msger-inputarea * {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 1em;
+  }
+
+  .msger-input {
+    flex: 1;
+    background: #ddd;
+  }
+
+  .msger-send-btn {
+    margin-left: 10px;
+    background: rgb(0, 196, 65);
+    color: #0df36d;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.23s;
+  }
+
+  .msger-send-btn:hover {
+    background: rgb(0, 180, 50);
+  }
+
+  .msger-chat {
+    background-color: #16e0d0;
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <title>NICKS-BOT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script defer src="idex2.js"></script>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+    integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <section class="msger">
+    <header class="msger-header">
+      <div class="msger-header-title">
+        <i class="fas fa-bug"></i><B>NICHOLAS_KINYILI HEALTHCARE CHATBOT</B><i class="fas fa-bug"></i>
+
+
+        <main class="msger-chat" id="msger-chat">
+
+
+
+        </main>
+
+        <form action="/message" method="post" class="msger-inputarea" id="send-form">
+          <input type="text" name="message" class="msger-input" id="message-input" placeholder="Enter your message...">
+          <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+  </section>
+  <!-- partial -->
+  <script src='https://use.fontawesome.com/releases/v5.0.13/js/all.js'></script>
+
+</body>
+
+</html>
